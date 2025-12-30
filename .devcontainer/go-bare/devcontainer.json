@@ -1,6 +1,9 @@
 {
   "name": "codelab-go-bare",
-  "build": { "dockerfile": "Dockerfile" },
+  "build": {
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
   "remoteUser": "vscode",
   "customizations": {
     "vscode": {
@@ -9,7 +12,9 @@
         "ms-vsliveshare.vsliveshare"
       ],
       "settings": {
-        "liveshare.autoShareTerminals": false
+        "liveshare.autoShareTerminals": false,
+        "go.toolsManagement.checkForUpdates": "proxy",
+        "go.toolsManagement.autoUpdate": true
       }
     }
   }

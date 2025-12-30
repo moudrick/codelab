@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
+MAX_WIDTH=80
+WIDTH=${COLUMNS:-80}
+(( WIDTH > MAX_WIDTH )) && WIDTH=$WIDTH
+
 line() {
-  printf '%*s\n' "$(tput cols)" '' | tr ' ' '─'
+  printf '%*s\n' "$WIDTH" '' | tr ' ' '-'
 }
 
 show_tool() {
@@ -20,20 +24,30 @@ show_tool() {
 
 echo
 line
-printf " CodeLab Dev Container\n"
+
+cat <<'EOF'
+   ____          _      _          _
+  / ___|___   __| | ___| |    __ _| |__
+ | |   / _ \ / _` |/ _ \ |   / _` | '_ \
+ | |__| (_) | (_| |  __/ |__| (_| | |_) |
+  \____\___/ \__,_|\___|_____\__,_|_.__/
+EOF
+
+echo
+printf " :: CodeLab ::\n"
+printf " [Dev Container]\n"
 printf " Profile:   %s\n" "${CODELAB_PROFILE:-unknown}"
 printf " OS:        %s\n" "$(uname -srm)"
 echo
 
-# Expected tools declared by container
 for tool in ${CODELAB_EXPECTED_TOOLS:-}; do
   case "$tool" in
-    go)              show_tool "Go" go ;;
-    git)             show_tool "Git" git ;;
-    gopls)           show_tool "gopls" gopls ;;
-    dlv)             show_tool "Delve" dlv ;;
-    golangci-lint)   show_tool "golangci-lint" golangci-lint ;;
-    *)               show_tool "$tool" "$tool" ;;
+    git)           show_tool "Git" git ;;
+    go)            show_tool "Go" go ;;
+    gopls)         show_tool "gopls" gopls ;;
+    dlv)           show_tool "Delve" dlv ;;
+    golangci-lint) show_tool "golangci-lint" golangci-lint ;;
+    *)             show_tool "$tool" "$tool" ;;
   esac
 done
 

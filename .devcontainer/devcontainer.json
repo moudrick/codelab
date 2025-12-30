@@ -1,0 +1,20 @@
+{
+  "name": "codelab",
+  "build": {
+    "context": ".",
+    "dockerfile": "go-bare/Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "ms-vsliveshare.vsliveshare"
+      ],
+      "settings": {
+        "go.toolsManagement.autoUpdate": true,
+        "go.toolsManagement.checkForUpdates": "proxy"
+      }
+    }
+  }
+}
