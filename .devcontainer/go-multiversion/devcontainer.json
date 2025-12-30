@@ -1,0 +1,13 @@
+{
+  "name": "codelab-go-multiversion",
+  "build": { "dockerfile": "Dockerfile" },
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "ms-vsliveshare.vsliveshare"
+      ]
+    }
+  }
+}
